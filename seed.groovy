@@ -1,6 +1,6 @@
 mavenJob('OneClickDeployment/compile_Job1') {
     scm {
-            github('saurau01/OneClickDemo.git', 'master')
+	    github('saurau01/OneClickDemo', 'master')
 	        }
 			triggers {
 			        snapshotDependencies(true)
