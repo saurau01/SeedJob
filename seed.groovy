@@ -7,6 +7,7 @@ buildPipelineView('OCD') {
     alwaysAllowManualTrigger()
     showPipelineParameters()
     refreshFrequency(60)
+}
 
 mavenJob('OneClickDeployment/compile_Job1') {
  scm {
