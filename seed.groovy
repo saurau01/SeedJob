@@ -34,3 +34,30 @@ mavenJob('OneClickDeployment/Test_Job2') {
 													    
         goals('test')
 }
+
+mavenJob('OneClickDeployment/Build_Job3') {
+ scm {
+     github('saurau01/OneClickDemo', 'master')
+     }
+ triggers {
+           upstream('OneClickDeployment/Test_Job2', 'SUCCESS')
+		   downstream('OneClickDeployment/Deploy_Job4', 'SUCCESS')
+          }
+ rootPOM('pom.xml')
+													    
+ goals('package')
+ publishers {
+        archiveArtifacts('target/*.war')
+    }
+}
+
+freeStyleJob('OneClickDeployment/Deploy_Job4') {
+    
+    
+    steps {
+        shell('export HOME=/root
+		vagrant up --provider=aws
+		/usr/bin/vagrant provision')
+	    
+    }
+}
