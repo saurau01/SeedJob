@@ -55,9 +55,9 @@ freeStyleJob('OneClickDeployment/Deploy_Job4') {
     
     
     steps {
-        shell('export HOME=/root
+        shell('''export HOME=/root
 		vagrant up --provider=aws
-		/usr/bin/vagrant provision')
+		/usr/bin/vagrant provision''')
 	    
     }
 }
