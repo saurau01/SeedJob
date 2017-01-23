@@ -60,7 +60,7 @@ freeStyleJob('OneClickDeployment/Deploy_Job4') {
     steps {
         shell(''' #!/bin/sh
                  export HOME=/root 
-                 if dpkg -l | grep vagrant > /dev/null; then
+                 if sudo dpkg -l | grep vagrant > /dev/null; then
                  sudo apt-get install vagrant
                  fi
 		         #vagrant up --provider=aws
