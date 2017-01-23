@@ -58,9 +58,14 @@ freeStyleJob('OneClickDeployment/Deploy_Job4') {
     
     
     steps {
-        shell('''export HOME=/root
-		vagrant up --provider=aws
-		/usr/bin/vagrant provision''')
+        shell(''' #!/bin/sh
+                 export HOME=/root 
+                 if dpkg -l | grep vagrant > /dev/null; then
+                 sudo apt-get install vagrant
+                 fi
+		         #vagrant up --provider=aws
+		         #/usr/bin/vagrant provision'''
+             )
 	    
     }
 }
