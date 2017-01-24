@@ -58,14 +58,14 @@ freeStyleJob('OneClickDeployment/Deploy_Job4') {
     
     
     steps {
-        shell(''' #!/bin/sh
+shell(''' #!/bin/sh
 export HOME=/root
 sudo dpkg -l | grep -i vagrant
 if [ $? -eq 1 ]; then
 sudo apt-get install vagrant -y
 fi
-#vagrant up --provider=aws
-#/usr/bin/vagrant provision'''
+vagrant up --provider=aws
+/usr/bin/vagrant provision'''
              )
 	    
     }
