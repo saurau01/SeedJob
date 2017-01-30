@@ -1,3 +1,7 @@
+def home = '/private/var/root'
+def work_space = '/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4'
+
+
 buildPipelineView('OCD') {
     filterBuildQueue()
     filterExecutors()
@@ -60,7 +64,7 @@ freeStyleJob('OneClickDeployment/Deploy_Job4') {
     steps {
 shell(''' 
 #!/bin/sh
-export HOME=/private/var/root
+export HOME=$home
 
 sudo /usr/local/bin/vagrant up --provider=aws
 sudo /usr/local/bin/vagrant provision
@@ -75,9 +79,9 @@ freeStyleJob('OneClickDeployment/Infra_Test_Job5') {
     steps {
 shell(''' 
 #!/bin/sh
-export HOME=/private/var/root
+export HOME=$home
 
-cd /opt/bitnami/apps/jenkins/jenkins_home/jobs/Deploy_job4/workspace
+cd $work_space
 sudo rspec
 '''
       )
