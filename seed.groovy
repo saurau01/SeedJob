@@ -55,14 +55,14 @@ mavenJob('OneClickDeployment/Build_Job3') {
     }
 }
 
-String home2 = '/private/var/root'
+
 freeStyleJob('OneClickDeployment/Deploy_Job4') {
     
-    
+  String home2 = '/private/var/root'  
     steps {
 shell(''' 
 #!/bin/sh
-export HOME="${home2}"
+export HOME=$home2
 
 sudo /usr/local/bin/vagrant up --provider=aws
 sudo /usr/local/bin/vagrant provision
@@ -71,17 +71,17 @@ sudo /usr/local/bin/vagrant provision
     }
 
 }
-String home = '/private/var/root'
-String work_space = '/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4'
+
 freeStyleJob('OneClickDeployment/Infra_Test_Job5') {
-    
+String home = '/private/var/root'
+String work_space = '/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4'   
     
     steps {
 shell(''' 
 #!/bin/sh
-export HOME="${home}"
+export HOME=$home
 
-cd "${work_space}"
+cd $work_space
 sudo rspec
 '''
       )
