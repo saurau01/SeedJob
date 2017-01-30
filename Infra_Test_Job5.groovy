@@ -6,7 +6,7 @@ shell('''
 home=/private/var/root
 work_space=/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4
 export HOME=$home
-export TARGET_HOST=default
+#export TARGET_HOST=default
 
 cd $work_space
 sudo /usr/local/bin/rspec
