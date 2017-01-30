@@ -9,7 +9,7 @@ export HOME=$home
 export TARGET_HOST=default
 
 cd $work_space
-sudo rspec
+sudo /usr/local/bin/rspec
 '''
       )
 	    
