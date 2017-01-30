@@ -1,6 +1,3 @@
-def home = '/private/var/root'
-def work_space = '/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4'
-
 
 buildPipelineView('OCD') {
     filterBuildQueue()
@@ -58,6 +55,8 @@ mavenJob('OneClickDeployment/Build_Job3') {
     }
 }
 
+def home = '/private/var/root'
+def work_space = '/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4'
 freeStyleJob('OneClickDeployment/Deploy_Job4') {
     
     
@@ -73,6 +72,8 @@ sudo /usr/local/bin/vagrant provision
     }
 
 }
+def home = '/private/var/root'
+def work_space = '/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4'
 freeStyleJob('OneClickDeployment/Infra_Test_Job5') {
     
     
