@@ -64,7 +64,7 @@ freeStyleJob('OneClickDeployment/Deploy_Job4') {
     steps {
 shell(''' 
 #!/bin/sh
-export HOME=$home
+export HOME=${home}
 
 sudo /usr/local/bin/vagrant up --provider=aws
 sudo /usr/local/bin/vagrant provision
@@ -79,9 +79,9 @@ freeStyleJob('OneClickDeployment/Infra_Test_Job5') {
     steps {
 shell(''' 
 #!/bin/sh
-export HOME=$home
+export HOME=${home}
 
-cd $work_space
+cd ${work_space}
 sudo rspec
 '''
       )
@@ -91,4 +91,4 @@ sudo rspec
         upstream('Deploy_Job4', 'SUCCESS')
     }
 
-}
+} 
