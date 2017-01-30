@@ -55,7 +55,7 @@ mavenJob('OneClickDeployment/Build_Job3') {
     }
 }
 
-def home2 = '/private/var/root'
+String home2 = '/private/var/root'
 freeStyleJob('OneClickDeployment/Deploy_Job4') {
     
     
@@ -71,8 +71,8 @@ sudo /usr/local/bin/vagrant provision
     }
 
 }
-def home = '/private/var/root'
-def work_space = '/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4'
+String home = '/private/var/root'
+String work_space = '/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4'
 freeStyleJob('OneClickDeployment/Infra_Test_Job5') {
     
     
