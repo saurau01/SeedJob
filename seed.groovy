@@ -55,15 +55,14 @@ mavenJob('OneClickDeployment/Build_Job3') {
     }
 }
 
-def home = '/private/var/root'
-def work_space = '/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4'
+def home2 = '/private/var/root'
 freeStyleJob('OneClickDeployment/Deploy_Job4') {
     
     
     steps {
 shell(''' 
 #!/bin/sh
-export HOME=home
+export HOME=home2
 
 sudo /usr/local/bin/vagrant up --provider=aws
 sudo /usr/local/bin/vagrant provision
