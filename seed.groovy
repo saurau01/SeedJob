@@ -86,9 +86,5 @@ sudo rspec
     triggers {
         upstream('Deploy_Job4', 'SUCCESS')
     }
-publishers {
-		
-        downstream('OneClickDeployment/Deploy_Code_Job5', 'SUCCESS')
-    
-    }
+
 }
