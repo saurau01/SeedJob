@@ -58,16 +58,37 @@ freeStyleJob('OneClickDeployment/Deploy_Job4') {
     
     
     steps {
-shell(''' #!/bin/sh
-export HOME=/root
-sudo dpkg -l | grep -i vagrant
-if [ $? -eq 1 ]; then
-sudo apt-get install vagrant -y
+shell(''' 
+#!/bin/sh
+export HOME=/private/var/root
 
-fi
-vagrant up --provider=aws
-/usr/bin/vagrant provision'''
-             )
+sudo /usr/local/bin/vagrant up --provider=aws
+sudo /usr/local/bin/vagrant provision
+'''
+      )
+    }
+
+}
+freeStyleJob('OneClickDeployment/Infra_Test_Job5') {
+    
+    
+    steps {
+shell(''' 
+#!/bin/sh
+export HOME=/private/var/root
+
+cd /opt/bitnami/apps/jenkins/jenkins_home/jobs/Deploy_job4/workspace
+sudo rspec
+'''
+      )
 	    
+    }
+    triggers {
+        upstream('Deploy_Job4', 'SUCCESS')
+    }
+publishers {
+		
+        downstream('OneClickDeployment/Deploy_Code_Job5', 'SUCCESS')
+    
     }
 }
