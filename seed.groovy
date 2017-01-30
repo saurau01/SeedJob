@@ -9,86 +9,19 @@ buildPipelineView('OCD') {
     showPipelineParameters()
     refreshFrequency(60)
 }
-
-mavenJob('OneClickDeployment/compile_Job1') {
- scm {
-	    github('saurau01/OneClickDemo', 'master')
-	        }
-triggers {
-          snapshotDependencies(true)
-          authenticationToken('capgemini')
-         }
-rootPOM('pom.xml')
-							    
-goals('compile')
-}
-
-
-mavenJob('OneClickDeployment/Test_Job2') {
- scm {
-     github('assahoo/mvn-test', 'master')
-     }
- triggers {
-           upstream('OneClickDeployment/compile_Job1', 'SUCCESS')
-          }
- rootPOM('pom.xml')
-													    
-        goals('test')
-}
-
-mavenJob('OneClickDeployment/Build_Job3') {
- scm {
-     github('saurau01/OneClickDemo', 'master')
-     }
- triggers {
-           upstream('OneClickDeployment/Test_Job2', 'SUCCESS')
-		   
-          }
- rootPOM('pom.xml')
-													    
- goals('package')
- publishers {
-        archiveArtifacts('target/*.war')
-		
-        downstream('OneClickDeployment/Deploy_Job4', 'SUCCESS')
-    
-    }
-}
-
-
-freeStyleJob('OneClickDeployment/Deploy_Job4') {
-    
-  String home2 = '/private/var/root'  
-    steps {
-shell(''' 
-#!/bin/sh
-export HOME=$home2
-
-sudo /usr/local/bin/vagrant up --provider=aws
-sudo /usr/local/bin/vagrant provision
-'''
-      )
-    }
-
-}
-
-freeStyleJob('OneClickDeployment/Infra_Test_Job5') {
-String home = '/private/var/root'
-String work_space = '/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4'   
-    
-    steps {
-shell(''' 
-#!/bin/sh
-export HOME=$home
-
-cd $work_space
-sudo rspec
-'''
-      )
-	    
+job('seed') {
+    scm {
+        github 'saurau01/SeedJob'
     }
     triggers {
-        upstream('Deploy_Job4', 'SUCCESS')
+        scm 'H/5 * * * *'
     }
-
-} 
+    steps {
+        gradle 'clean test'
+        dsl {
+            external '*Job*.groovy'
+            
+        }
+    }
+    
+}
