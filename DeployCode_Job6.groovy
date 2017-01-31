@@ -5,7 +5,7 @@ shell('''
 #!/bin/sh
 export HOME=/Users/Shared/Jenkins
 work_space=/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4
-IP=localhost:8080
+IP=https://s3.amazonaws.com/vagrant-jenkins
 API_TOKEN=d1e3c81ca8cf0f2ac074fc9ccde17fc2
 cd $work_space
 
@@ -27,7 +27,7 @@ echo "sudo touch /opt/flag"
 echo "sudo apt-get install unzip -yq"
 echo "cd /var/www/html"
 echo "sudo rm -rf archive.zip archive"
-echo "sudo wget -c --auth-no-challenge --http-user=admin --http-password=$API_TOKEN http://$IP/job/OneClickDeployment/job/Build_Job3/lastSuccessfulBuild/artifact/target/$WAR"
+echo "sudo wget -c http://$IP/$WAR"
 
 
 
