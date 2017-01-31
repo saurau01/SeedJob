@@ -27,22 +27,22 @@ echo "sudo touch /opt/flag"
 echo "sudo apt-get install unzip -yq"
 echo "cd /var/www/html"
 echo "sudo rm -rf archive.zip archive"
-echo "sudo wget -c --auth-no-challenge --http-user=admin --http-password=$API_TOKEN http://$IP/jenkins/view/Pipe_Line/job/Build_job3/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+echo "sudo wget -c --auth-no-challenge --http-user=admin --http-password=$API_TOKEN http://$IP/job/OneClickDeployment/job/Build_Job3/lastSuccessfulBuild/artifact/target/$WAR"
 
-echo "sudo unzip archive.zip"
-echo "sudo rm -rf archive.zip"
-echo "sudo cp -r archive/target/* /var/lib/tomcat7/webapps/tmp/"
-echo "sudo rm -rf archive"
+
+
+echo "sudo cp -r $WAR /var/lib/tomcat7/webapps/tmp/"
+
 echo "sudo rm -rf /var/lib/tomcat7/webapps/ROOT/*"
 
 echo "sudo cp /var/lib/tomcat7/webapps/tmp/$WAR /var/lib/tomcat7/webapps/"
 echo "sudo service tomcat7 restart"
 echo "sudo cp -R /var/lib/tomcat7/webapps/$FOLDER/* /var/lib/tomcat7/webapps/ROOT/"
 echo "sudo rm -rf /var/lib/tomcat7/webapps/tmp /var/lib/tomcat7/webapps/$WAR"
-) >> deploy.sh
-sudo chmod +x deploy.sh
+) >> /Users/Shared/Jenkins/deploy.sh
+sudo chmod +x /Users/Shared/Jenkins/deploy.sh
 
-ssh -i /Users/saurabhkumar/Downloads/vagrant_aws.pem ubuntu@$server 'bash -s' < deploy.sh
+ssh -i /Users/Shared/Jenkins/.ssh/vagrant_aws.pem ubuntu@$server 'bash -s' < /Users/Shared/Jenkins/deploy.sh
 '''
       )
     }
