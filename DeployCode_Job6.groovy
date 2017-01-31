@@ -3,7 +3,7 @@ freeStyleJob('OneClickDeployment/DeployCode_Job6') {
 steps {
 shell(''' 
 #!/bin/sh
-export HOME=/root
+export HOME=/Users/Shared/Jenkins
 work_space=/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4
 IP=localhost:8080
 API_TOKEN=d1e3c81ca8cf0f2ac074fc9ccde17fc2
