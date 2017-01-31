@@ -5,7 +5,10 @@ shell('''
 #!/bin/sh
 export HOME=/root
 work_space=/Users/Shared/Jenkins/Home/workspace/OneClickDeployment/Deploy_Job4
+IP=localhost:8080
+API_TOKEN=d1e3c81ca8cf0f2ac074fc9ccde17fc2
 cd $work_space
+
 server=`vagrant ssh-config | grep HostName | awk '{print $2 }'`
 ssh-keyscan $server >> /var/root/.ssh/known_hosts
 #IP =`curl http://169.254.169.254/latest/meta-data/public-ipv4`
@@ -24,7 +27,7 @@ echo "sudo touch /opt/flag"
 echo "sudo apt-get install unzip -yq"
 echo "cd /var/www/html"
 echo "sudo rm -rf archive.zip archive"
-echo "sudo wget -c --auth-no-challenge --http-user=user --http-password=f187918eb498b083e145aaa7c127c226 http://$IP/jenkins/view/Pipe_Line/job/Build_job3/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+echo "sudo wget -c --auth-no-challenge --http-user=admin --http-password=$API_TOKEN http://$IP/jenkins/view/Pipe_Line/job/Build_job3/lastSuccessfulBuild/artifact/*zip*/archive.zip"
 
 echo "sudo unzip archive.zip"
 echo "sudo rm -rf archive.zip"
