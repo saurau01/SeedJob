@@ -10,7 +10,7 @@ API_TOKEN=d1e3c81ca8cf0f2ac074fc9ccde17fc2
 cd $work_space
 
 server=`sudo /usr/local/bin/vagrant ssh-config | grep HostName | awk '{print $2 }'`
-sudo ssh-keyscan $server >> /Users/Shared/Jenkins/.ssh/known_hosts
+ssh-keyscan $server >> /Users/Shared/Jenkins/.ssh/known_hosts
 #IP =`curl http://169.254.169.254/latest/meta-data/public-ipv4`
 
 #IP=`curl http://169.254.169.254/latest/meta-data/public-ipv4`
