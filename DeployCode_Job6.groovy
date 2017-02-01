@@ -27,7 +27,7 @@ echo "sudo touch /opt/flag"
 echo "sudo apt-get install unzip -yq"
 echo "cd /var/www/html"
 echo "sudo rm -rf archive.zip archive"
-echo "sudo wget -c http://$IP/$WAR"
+echo "sudo wget -c $IP/$WAR"
 
 
 
@@ -39,10 +39,11 @@ echo "sudo cp /var/lib/tomcat7/webapps/tmp/$WAR /var/lib/tomcat7/webapps/"
 echo "sudo service tomcat7 restart"
 echo "sudo cp -R /var/lib/tomcat7/webapps/$FOLDER/* /var/lib/tomcat7/webapps/ROOT/"
 echo "sudo rm -rf /var/lib/tomcat7/webapps/tmp /var/lib/tomcat7/webapps/$WAR"
-) >> /Users/Shared/Jenkins/deploy.sh
+) > /Users/Shared/Jenkins/deploy.sh
 sudo chmod +x /Users/Shared/Jenkins/deploy.sh
 
 ssh -i /Users/Shared/Jenkins/.ssh/vagrant_aws.pem ubuntu@$server 'bash -s' < /Users/Shared/Jenkins/deploy.sh
+
 '''
       )
     }
