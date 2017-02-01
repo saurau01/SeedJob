@@ -6,8 +6,7 @@ scm {
 	    github repo, branch_name
      }
 triggers {
-          snapshotDependencies(true)
-          authenticationToken('capgemini')
+          scm 'H/5 * * * *'
          }
 rootPOM('pom.xml')
 							    
