@@ -23,9 +23,8 @@ echo "#!/bin/bash"
 
 echo "cd /var/lib/tomcat7/webapps/"
 echo "sudo mkdir tmp"
-echo "sudo touch /opt/flag"
 echo "cd /var/www/html"
-echo "sudo rm -rf *.war"
+echo "sudo rm -rf $WAR"
 echo "sudo wget -c $IP/$WAR"
 
 
@@ -37,7 +36,7 @@ echo "sudo rm -rf /var/lib/tomcat7/webapps/ROOT/*"
 echo "sudo cp /var/lib/tomcat7/webapps/tmp/$WAR /var/lib/tomcat7/webapps/"
 echo "sudo service tomcat7 restart"
 echo "sudo cp -R /var/lib/tomcat7/webapps/$FOLDER/* /var/lib/tomcat7/webapps/ROOT/"
-echo "sudo rm -rf /var/lib/tomcat7/webapps/tmp /var/lib/tomcat7/webapps/$WAR"
+echo "sudo rm -rf /var/lib/tomcat7/webapps/tmp /var/lib/tomcat7/webapps/$WAR /var/lib/tomcat7/webapps/$FOLDER"
 ) > /Users/Shared/Jenkins/deploy.sh
 sudo chmod +x /Users/Shared/Jenkins/deploy.sh
 
