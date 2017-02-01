@@ -15,7 +15,11 @@ sudo /usr/local/bin/rspec
 	    
     }
     triggers {
-        upstream('Deploy_Job4', 'SUCCESS')
+        upstream('OneClickDeployment/Deploy_Job4', 'SUCCESS')
+    }
+    publishers {
+
+        downstream('OneClickDeployment/DeployCode_Job6', 'SUCCESS')
     }
 
 } 

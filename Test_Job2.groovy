@@ -8,4 +8,7 @@ mavenJob('OneClickDeployment/Test_Job2') {
  rootPOM('pom.xml')
 													    
         goals('test')
+        publishers {
+            downstream('OneClickDeployment/Build_Job3', 'SUCCESS')
+        }
 }
