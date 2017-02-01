@@ -24,9 +24,8 @@ echo "#!/bin/bash"
 echo "cd /var/lib/tomcat7/webapps/"
 echo "sudo mkdir tmp"
 echo "sudo touch /opt/flag"
-echo "sudo apt-get install unzip -yq"
 echo "cd /var/www/html"
-echo "sudo rm -rf archive.zip archive"
+echo "sudo rm -rf *.war"
 echo "sudo wget -c $IP/$WAR"
 
 
