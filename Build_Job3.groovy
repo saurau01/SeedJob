@@ -13,6 +13,13 @@ mavenJob('OneClickDeployment/Build_Job3') {
         archiveArtifacts('target/*.war')
 		
         downstream('OneClickDeployment/Deploy_Job4', 'SUCCESS')
+        s3('s3upload') {
+            entry('target/*.war', 'vagrant-jenkins', 'us-east-1') {
+                storageClass('REDUCED_REDUNDANCY')
+                noUploadOnFailure()
+                uploadFromSlave()
+            }
+        }
     
     }
 }
