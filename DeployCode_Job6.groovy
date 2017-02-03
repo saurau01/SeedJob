@@ -48,6 +48,9 @@ ssh -i /Users/Shared/Jenkins/.ssh/vagrant_aws.pem ubuntu@$server 'bash -s' < /Us
 triggers {
         upstream('Infra_Test_Job5', 'SUCCESS')
     }
+publishers {
+        downstream('Functional_Test_Job7', 'SUCCESS')
+}
 
 }
 

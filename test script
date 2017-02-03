@@ -35,3 +35,6 @@ echo "sudo rm -rf /var/lib/tomcat7/webapps/tmp /var/lib/tomcat7/webapps/$WAR"
 sudo chmod +x deploy.sh
 
 ssh -i /root/.ssh/ashok.pem ubuntu@$server 'bash -s' < deploy.sh
+
+
+http://localhost:8080/view/OCD/job/OneClickDeployment/Build_Job3/lastSuccessfulBuild/artifact/*zip*/archive.zip'

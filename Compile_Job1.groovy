@@ -11,4 +11,9 @@ triggers {
 rootPOM('pom.xml')
 							    
 goals('compile')
+
+    publishers {
+
+        downstream('OneClickDeployment/Test_Job2', 'SUCCESS')
+    }
 }
